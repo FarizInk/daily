@@ -20,14 +20,14 @@ const sidebarOpen = ref(false)
           <div class="fixed inset-0 bg-gray-900/80" />
         </TransitionChild>
 
-        <div class="fixed inset-0 flex">
+        <div class="fixed inset-0 flex justify-end">
           <TransitionChild as="template" enter="transition ease-in-out duration-300 transform"
-            enter-from="-translate-x-full" enter-to="translate-x-0" leave="transition ease-in-out duration-300 transform"
-            leave-from="translate-x-0" leave-to="-translate-x-full">
-            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+            enter-from="translate-x-full" enter-to="translate-x-0" leave="transition ease-in-out duration-300 transform"
+            leave-from="translate-x-0" leave-to="translate-x-full">
+            <DialogPanel class="relative ml-16 flex w-full max-w-xs flex-1">
               <TransitionChild as="template" enter="ease-in-out duration-300" enter-from="opacity-0"
                 enter-to="opacity-100" leave="ease-in-out duration-300" leave-from="opacity-100" leave-to="opacity-0">
-                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                <div class="absolute right-full top-0 flex w-16 justify-center pt-5">
                   <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
                     <span class="sr-only">Close sidebar</span>
                     <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
@@ -57,7 +57,7 @@ const sidebarOpen = ref(false)
       <a href="#">
         <span class="sr-only">Your profile</span>
         <img class="h-8 w-8 rounded-full bg-gray-50"
-          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          src="https://ui-avatars.com/api/?name=Z&background=random"
           alt="" />
       </a>
     </div>

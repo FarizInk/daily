@@ -15,6 +15,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  build: {
+    transpile: ['vue-sonner']
+  }
   // nitro: {
   //   storage: {
   //     redis: {

@@ -1,25 +1,50 @@
 <script setup>
 import Modal from '@/components/Modal.vue'
 import Button from '@/components/Button.vue'
+import tinykeys from "@/utils/tinykeys"
+import TinyGesture from 'tinygesture';
+
+// alternatively, you can also use it here
+const { $toast } = useNuxtApp()
 
 const modalSignIn = ref(false)
 const pin = ref('')
 
 onMounted(() => {
-  document.onkeyup = function (e) {
-    console.log(e.shiftKey, e.key, e);
-    if (e.shiftKey && e.key === 'A') {
-      modalSignIn.value = true
-    }
-  };
+  // trigger modal on gesture (mobile)
+  const gesture = new TinyGesture(document.body);
+  gesture.on('doubletap', () => setTimeout(() => modalSignIn.value = true, 100));
 
-  modalSignIn.value = true
+  // trigger modal on key shortcut
+  tinykeys(window, {
+    "$mod+KeyD": event => {
+      event.preventDefault()
+      modalSignIn.value = true
+    },
+  })
 })
 
 watch(pin, (val) => {
   if (String(val).length === 4) {
     console.log('processing...');
-    setTimeout(() => pin.value = '', 3000)
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("foo");
+      }, 300);
+    });
+    $toast.promise(myPromise, {
+      loading: 'Loading...',
+      success: (data) => {
+        modalSignIn.value = false
+        pin.value = ''
+        return `${data} toast has been added`;
+      },
+      error: (data) => {
+        pin.value = ''
+        return 'Error'
+      },
+    });
+
   }
 })
 </script>

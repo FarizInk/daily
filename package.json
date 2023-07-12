@@ -23,6 +23,8 @@
     "@heroicons/vue": "^2.0.18",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
-    "unstorage": "^1.7.0"
+    "tinygesture": "^2.0.0",
+    "unstorage": "^1.7.0",
+    "vue-sonner": "^0.3.3"
   }
 }
