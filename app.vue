@@ -12,10 +12,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <Toaster position="top-center" richColors />
   <div class="bg-gray-100 min-h-screen">
     <NuxtLayout>
       <NuxtPage />
+      <Toaster position="top-center" richColors />
     </NuxtLayout>
   </div>
 </template>

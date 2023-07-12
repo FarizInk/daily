@@ -56,9 +56,7 @@ const sidebarOpen = ref(false)
       <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
       <a href="#">
         <span class="sr-only">Your profile</span>
-        <img class="h-8 w-8 rounded-full bg-gray-50"
-          src="https://ui-avatars.com/api/?name=Z&background=random"
-          alt="" />
+        <img class="h-8 w-8 rounded-full bg-gray-50" src="https://ui-avatars.com/api/?name=Z&background=random" alt="" />
       </a>
     </div>
 
