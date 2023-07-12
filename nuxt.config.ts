@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/fonts.css', '~/assets/css/main.css'],
   devtools: { enabled: true },
   postcss: {
     plugins: {
@@ -15,16 +15,22 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  nitro: {
-    storage: {
-      redis: {
-        driver: 'redis',
-        /* redis connector options */
-      },
-      db: {
-        driver: 'fs',
-        base: './.data/db'
-      }
-    }
-  }
+  // nitro: {
+  //   storage: {
+  //     redis: {
+  //       driver: 'redis',
+  //       /* redis connector options */
+  //     },
+  //     db: {
+  //       driver: 'fs',
+  //       base: './.data/db'
+  //     }
+  //   }
+  // },
+  // runtimeConfig: {
+  //   API_URL: process.env.API_URL,
+  //   public: {
+  //     API_URL: process.env.API_URL,
+  //   }
+  // }
 })

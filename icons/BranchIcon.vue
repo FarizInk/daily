@@ -1,0 +1,16 @@
+<template>
+  <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" class="icon">
+    <rect fill="none" height="256" width="256" />
+    <circle cx="188" cy="68" opacity="0.2" r="28" fill="currentColor" />
+    <path d="M68,160v-8a23.9,23.9,0,0,1,24-24h72a24,24,0,0,0,24-24V96" fill="none" stroke="currentColor" stroke-linecap="round"
+      stroke-linejoin="round" stroke-width="16" />
+    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" x1="68" x2="68"
+      y1="96" y2="160" />
+    <circle cx="68" cy="188" fill="none" r="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="16" />
+    <circle cx="188" cy="68" fill="none" r="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="16" />
+    <circle cx="68" cy="68" fill="none" r="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="16" />
+  </svg>
+</template>

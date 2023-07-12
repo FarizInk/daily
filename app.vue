@@ -5,11 +5,14 @@ onMounted(() => {
   } else {
     document.documentElement.classList.remove('dark')
   }
+
+  // for now using light mode only
+  document.documentElement.classList.remove('dark')
 })
 </script>
 
 <template>
-  <div>
+  <div class="bg-gray-100 min-h-screen">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
