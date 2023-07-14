@@ -6,12 +6,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/icon.png"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^18",
+    "@vite-pwa/assets-generator": "^0.0.3",
     "@vite-pwa/nuxt": "^0.1.0",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.6.0",
