@@ -15,7 +15,7 @@ export const mainMenus = [
 ];
 
 export const ghostMenus = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  { id: 1, name: 'Tasks', href: '#', initial: 'T', current: false },
+  { id: 2, name: 'Templates', href: '#', initial: 'T', current: false },
+  { id: 3, name: 'Spotify', href: '#', initial: 'S', current: false },
 ];
