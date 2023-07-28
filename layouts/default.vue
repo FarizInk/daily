@@ -2,13 +2,64 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import {
-  Bars3Icon,
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { rightSpace } from '@/stores/store.ts'
 import HeartBreakIcon from '@/icons/HeartBreakIcon.vue'
+import Modal from '@/components/Modal.vue'
+import Button from '@/components/Button.vue'
+import tinykeys from "@/utils/tinykeys"
+import TinyGesture from 'tinygesture';
+import { mainMenus } from '@/stores/store'
 
+const route = useRoute()
+const router = useRouter();
+
+// alternatively, you can also use it here
+const { $toast } = useNuxtApp()
+
+const modalSignIn = ref(false)
+const pin = ref('')
 const sidebarOpen = ref(false)
+
+onMounted(() => {
+  // trigger modal on gesture (mobile)
+  const gesture = new TinyGesture(document.getElementById('bottom-nav'));
+  gesture.on('swiperight', () => modalSignIn.value = true);
+  gesture.on('swipeleft', () => sidebarOpen.value = true);
+
+  // trigger modal on key shortcut
+  tinykeys(window, {
+    "$mod+KeyD": event => {
+      event.preventDefault()
+      modalSignIn.value = true
+    },
+  })
+})
+
+watch(pin, (val) => {
+  if (String(val).length === 4) {
+    console.log('processing...');
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("foo");
+      }, 300);
+    });
+    $toast.promise(myPromise, {
+      loading: 'Loading...',
+      success: (data) => {
+        modalSignIn.value = false
+        pin.value = ''
+        return `${data} toast has been added`;
+      },
+      error: (data) => {
+        pin.value = ''
+        return 'Error'
+      },
+    });
+
+  }
+})
 </script>
 <template>
   <div>
@@ -35,7 +86,7 @@ const sidebarOpen = ref(false)
                 </div>
               </TransitionChild>
               <!-- Sidebar component, swap this element with another sidebar if you like -->
-              <Sidebar />
+              <Sidebar @click="() => sidebarOpen = false" />
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -45,24 +96,22 @@ const sidebarOpen = ref(false)
     <!-- Static sidebar for desktop -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:w-72 lg:flex-col">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
-      <Sidebar />
+      <Sidebar @click="() => sidebarOpen = false" />
     </div>
 
-    <div class="sticky top-0 z-10 flex items-center gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
-        <span class="sr-only">Open sidebar</span>
-        <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-      </button>
-      <div class="flex-1 text-sm font-semibold leading-6 text-gray-900">Dashboard</div>
-      <a href="#">
-        <span class="sr-only">Your profile</span>
-        <img class="h-8 w-8 rounded-full bg-gray-50" src="https://ui-avatars.com/api/?name=Z&background=random" alt="" />
-      </a>
+    <div id="bottom-nav"
+      class="fixed w-full bottom-0 z-10 flex items-center justify-between  gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+      <NuxtLink v-for="(item, index) in mainMenus" :key="index" :to="router.resolve({ name: item.route })?.path ?? '/'"
+        :class="[route.name === item.route ? 'bg-indigo-100 text-indigo-600' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
+        <component :is="item.icon"
+          :class="[route.name === item.route ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0']"
+          aria-hidden="true" />
+      </NuxtLink>
     </div>
 
     <main class="lg:pl-72">
       <div class="xl:pr-96">
-        <div class="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
+        <div class="px-4 pb-14 sm:px-6 lg:px-8 lg:py-6">
           <slot />
         </div>
       </div>
@@ -82,4 +131,14 @@ const sidebarOpen = ref(false)
       </div>
     </aside>
   </div>
+  <Modal :is-open="modalSignIn" @close="() => modalSignIn = false" :use-footer="false" width="max-w-xs" align="items-end">
+    <template #header>
+      <div class="text-center">
+        Enter Pin
+      </div>
+    </template>
+    <div class="mt-1">
+      <input type="password" class="input text-center" v-model="pin" :disabled="String(pin).length === 4" />
+    </div>
+  </Modal>
 </template>

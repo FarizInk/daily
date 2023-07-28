@@ -16,7 +16,7 @@ onMounted(() => {
   <div class="bg-gray-100 min-h-screen">
     <NuxtLayout>
       <NuxtPage />
-      <Toaster position="top-center" richColors />
+      <Toaster position="top-center" richColors closeButton />
     </NuxtLayout>
   </div>
 </template>

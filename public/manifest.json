@@ -7,7 +7,7 @@
     "scope": "/",
     "start_url": "/",
     "description": "Fariz Daily App.",
-    "orientation": "any",
+    "orientation": "portrait",
     "icons": [
         {
             "src": "pwa-64x64.png",
